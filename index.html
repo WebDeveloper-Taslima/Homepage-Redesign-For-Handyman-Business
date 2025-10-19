@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stan The Handyman - Professional Home Repair & Renovation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #e53935;
+            --primary-dark: #b71c1c;
+            --neutral-black: #212121;
+            --neutral-gray: #757575;
+            --neutral-light: #f5f5f5;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--neutral-black);
+            background-color: white;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--neutral-black);
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-red) !important;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            color: var(--neutral-black) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-red) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://i.postimg.cc/15qkxGjj/Chat-GPT-Image-Oct-19-2025-11-04-43-PM.png') center/cover;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+        }
+        
+        /* About Section */
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-content {
+            padding: 2rem;
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+        }
+        
+        /* Service Cards */
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s;
+            margin-bottom: 2rem;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background-color: var(--neutral-light);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-icon i {
+            font-size: 3rem;
+            color: var(--primary-red);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--neutral-black);
+        }
+        
+        /* Projects Gallery */
+        .project-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 250px;
+        }
+        
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .project-item:hover .project-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-rating {
+            color: #ffc107;
+            margin-left: auto;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--neutral-gray);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-red);
+        }
+        
+        /* Blog Roll */
+        .blog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--neutral-black);
+        }
+        
+        /* Estimate Form */
+        .estimate-form {
+            background-color: var(--neutral-light);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        
+        .estimate-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+        }
+        
+        .form-control {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 0.2rem rgba(229, 57, 53, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--neutral-black);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        footer h5 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        footer h5:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-red);
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        footer ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--primary-red);
+        }
+        
+        .contact-info i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://z-cdn-media.chatglm.cn/files/d5c9b83d-5310-4710-b5c5-f3b0bd2a7e54_logo%20%288%29.png?auth_key=1792424733-68eb797398e943a1a281ec31210e1520-0-52a33b2d245814c4431009458f098c4e" alt="Stan The Handyman Logo">
+                Stan The Handyman
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Professional Home Repair & Renovation</h1>
+            <p class="lead">Quality craftsmanship for all your home improvement needs</p>
+            
+            <div class="hero-buttons">
+                <a href="#estimate" class="btn btn-primary btn-lg">Request Free Estimate</a>
+                <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Stan</h2>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="about-img">
+                        <img src="	https://i.postimg.cc/B6xdLDrj/Chat-GPT-Image-Oct-19-2025-11-23-29-PM.png" class="img-fluid" alt="Stan The Handyman">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="about-content">
+                        <h3>Your Trusted Local Handyman</h3>
+                        <p>With over 15 years of experience in home repair and renovation, Stan has built a reputation for quality workmanship and exceptional customer service. From small repairs to major renovations, Stan approaches every project with the same attention to detail and commitment to excellence.</p>
+                        <p>Stan believes in honest communication, fair pricing, and treating every home as if it were his own. When you hire Stan, you're not just getting a handyman – you're getting a partner who will work with you to bring your vision to life.</p>
+                        <div class="mt-4">
+                            <a href="#estimate" class="btn btn-primary">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section bg-light" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-hammer"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>Carpentry</h4>
+                            <p>Custom carpentry work including cabinets, trim, framing, and furniture repair.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-droplet-half"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>Plumbing</h4>
+                            <p>Faucet repair, toilet installation, pipe leaks, and other plumbing services.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>Electrical</h4>
+                            <p>Lighting installation, outlet repair, ceiling fan installation, and more.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-brush"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>Painting</h4>
+                            <p>Interior and exterior painting services with quality materials and clean finish.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>Flooring</h4>
+                            <p>Hardwood, laminate, tile, and vinyl flooring installation and repair.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4>General Repairs</h4>
+                            <p>Drywall repair, door and window installation, and other general home repairs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kitchen Renovation">
+                        <div class="project-overlay">
+                            <h4>Kitchen Renovation</h4>
+                            <p>Complete kitchen remodel with custom cabinets and countertops</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bathroom Remodel">
+                        <div class="project-overlay">
+                            <h4>Bathroom Remodel</h4>
+                            <p>Modern bathroom update with tile work and new fixtures</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Deck Construction">
+                        <div class="project-overlay">
+                            <h4>Deck Construction</h4>
+                            <p>Custom built deck with railing and stairs for backyard access</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Flooring Installation">
+                        <div class="project-overlay">
+                            <h4>Flooring Installation</h4>
+                            <p>Hardwood flooring installation throughout living areas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Exterior Painting">
+                        <div class="project-overlay">
+                            <h4>Exterior Painting</h4>
+                            <p>Complete exterior paint job with color consultation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="project-item">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Shelving">
+                        <div class="project-overlay">
+                            <h4>Custom Shelving</h4>
+                            <p>Built-in shelving units for home office and storage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-light" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Reviews</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            "Stan did an amazing job remodeling our kitchen. His attention to detail and craftsmanship exceeded our expectations. The project was completed on time and within budget."
+                        </div>
+                        <div class="testimonial-author">
+                            - Sarah Johnson
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            "I've hired Stan for multiple projects around my home, from plumbing repairs to custom shelving. He's always professional, reliable, and does excellent work."
+                        </div>
+                        <div class="testimonial-author">
+                            - Michael Chen
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                        <div class="testimonial-text">
+                            "Stan built a beautiful deck for our backyard. His communication throughout the project was excellent, and the final result was even better than we imagined."
+                        </div>
+                        <div class="testimonial-author">
+                            - Emily Rodriguez
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest From Our Blog</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://media.istockphoto.com/id/1943281621/photo/professional-plumber-taking-adjustable-wrench-from-tool-bag-indoors-closeup.jpg?s=612x612&w=0&k=20&c=dJE172R6CVz3ZSwcIbaNWWaqslvarEPHjHqcH1fk18g=" class="blog-img w-100" alt="Blog Post">
+                        <div class="blog-content">
+                            <div class="blog-date">October 15, 2023</div>
+                            <h4>5 Home Renovation Projects That Add Value</h4>
+                            <p>Looking to increase your home's value? These renovation projects offer the best return on investment...</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://www.shutterstock.com/image-photo/luxurious-bathroom-freestanding-bathtub-600nw-2472337571.jpg" class="blog-img w-100" alt="Blog Post">
+                        <div class="blog-content">
+                            <div class="blog-date">September 28, 2023</div>
+                            <h4>Preparing Your Home for Winter</h4>
+                            <p>As colder weather approaches, it's important to prepare your home for the winter months. Here are some essential maintenance tasks...</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKa6UvAWcvF-cbmKo9A1v9q1lEuMnitPnZPg&s" class="blog-img w-100" alt="Blog Post">
+                        <div class="blog-content">
+                            <div class="blog-date">September 12, 2023</div>
+                            <h4>Kitchen Trends for 2024</h4>
+                            <p>Discover the latest kitchen design trends that will be popular in the coming year, from color schemes to smart appliances...</p>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary">View All Blog Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estimate Form Section -->
+    <section class="section bg-light" id="estimate">
+        <div class="container">
+            <div class="section-title">
+                <h2>Request Free Estimate</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="estimate-form">
+                        <h3>Get Your Free Estimate Today</h3>
+                        <p>Fill out the form below and we'll get back to you within 24 hours to discuss your project.</p>
+                        
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control">
+                                        <option value="">Select Service</option>
+                                        <option value="carpentry">Carpentry</option>
+                                        <option value="plumbing">Plumbing</option>
+                                        <option value="electrical">Electrical</option>
+                                        <option value="painting">Painting</option>
+                                        <option value="flooring">Flooring</option>
+                                        <option value="general">General Repairs</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Tell us about your project"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About Stan The Handyman</h5>
+                    <p>Professional home repair and renovation services with over 15 years of experience. Quality craftsmanship and exceptional customer service guaranteed.</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#">Carpentry</a></li>
+                        <li><a href="#">Plumbing</a></li>
+                        <li><a href="#">Electrical</a></li>
+                        <li><a href="#">Painting</a></li>
+                        <li><a href="#">Flooring</a></li>
+                        <li><a href="#">General Repairs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <p><i class="bi bi-geo-alt"></i> 123 Main Street, Anytown, USA</p>
+                        <p><i class="bi bi-telephone"></i> (555) 123-4567</p>
+                        <p><i class="bi bi-envelope"></i> info@stanthehandyman.com</p>
+                        <p><i class="bi bi-clock"></i> Mon-Fri: 8am-6pm, Sat: 9am-4pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stan The Handyman || Developed By WebDevTaslima | All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
